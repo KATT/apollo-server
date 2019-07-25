@@ -298,7 +298,7 @@ export async function processHTTPRequest<TContext>(
 
         // This code is run on parse/validation errors and any other error that
         // doesn't reach GraphQL execution
-        if (response.errors && typeof response.data === 'undefined') {
+        if (response.errors && (response.data === null || typeof response.data === 'undefined')) {
           // don't include options, since the errors have already been formatted
           return throwHttpGraphQLError(
             (response.http && response.http.status) || 400,
